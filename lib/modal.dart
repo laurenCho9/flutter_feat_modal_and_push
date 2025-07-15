@@ -42,6 +42,22 @@ class _CustomModalState extends State<CustomModal> {
       tabCompleted[1] ? '탭2완료' : '탭2입력',
       tabCompleted[2] ? '탭3완료' : '탭3입력',
     ];
+    Color? getButtonBgColor(int idx) {
+      if (tabCompleted[idx]) {
+        return const Color(0xFF333333);
+      } else {
+        return Colors.pink[100];
+      }
+    }
+
+    Color? getButtonFontColor(int idx) {
+      if (tabCompleted[idx]) {
+        return Colors.white;
+      } else {
+        return Colors.black;
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -86,6 +102,10 @@ class _CustomModalState extends State<CustomModal> {
               const SizedBox(width: 12),
               Expanded(
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: getButtonBgColor(_selectedTab),
+                    foregroundColor: getButtonFontColor(_selectedTab),
+                  ),
                   onPressed:
                       tabCompleted[_selectedTab]
                           ? () => _handleCompleteButton(_selectedTab)

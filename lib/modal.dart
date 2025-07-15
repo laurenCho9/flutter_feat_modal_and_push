@@ -12,6 +12,8 @@ class _CustomModalState extends State<CustomModal> {
 
   @override
   Widget build(BuildContext context) {
+    final tabTexts = ['이것은 탭1 모달입니다.', '이것은 탭2 모달입니다.', '이것은 탭3 모달입니다.'];
+    final inputButtonTexts = ['탭1입력', '탭2입력', '탭3입력'];
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -42,11 +44,25 @@ class _CustomModalState extends State<CustomModal> {
             ),
           ),
           const SizedBox(height: 24),
-          const Text('이것은 모달입니다.', style: TextStyle(fontSize: 18)),
+          Text(tabTexts[_selectedTab], style: const TextStyle(fontSize: 18)),
           const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('닫기'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('닫기'),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text(inputButtonTexts[_selectedTab]),
+                ),
+              ),
+            ],
           ),
         ],
       ),

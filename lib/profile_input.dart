@@ -17,6 +17,7 @@ class _ProfileInputPageState extends State<ProfileInputPage> {
     '탭2에 대한 설명입니다.',
     '탭3에 대한 설명입니다.',
   ];
+  final List<String> saveButtonTexts = ['탭1저장하기', '탭2저장하기', '탭3저장하기'];
 
   @override
   void initState() {
@@ -74,8 +75,10 @@ class _ProfileInputPageState extends State<ProfileInputPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('저장하기'),
+                onPressed: () {
+                  Navigator.of(context).pop(_selectedTab);
+                },
+                child: Text(saveButtonTexts[_selectedTab]),
               ),
             ),
           ],

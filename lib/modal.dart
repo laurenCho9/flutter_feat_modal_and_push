@@ -10,17 +10,38 @@ class CustomModal extends StatefulWidget {
 
 class _CustomModalState extends State<CustomModal> {
   int _selectedTab = 0;
+  List<bool> tabCompleted = [false, false, false];
 
-  void _openProfileInputPage(int tabIndex) {
-    Navigator.of(context).push(
+  Future<void> _openProfileInputPage(int tabIndex) async {
+    final result = await Navigator.of(context).push<int>(
       MaterialPageRoute(builder: (_) => ProfileInputPage(initialTab: tabIndex)),
     );
+    if (result != null) {
+      setState(() {
+        tabCompleted[result] = true;
+        _selectedTab = result;
+      });
+    }
+  }
+
+  void _handleCompleteButton(int tabIndex) {
+    if (tabIndex < 2) {
+      setState(() {
+        _selectedTab = tabIndex + 1;
+      });
+    } else {
+      Navigator.of(context).pop();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final tabTexts = ['이것은 탭1 모달입니다.', '이것은 탭2 모달입니다.', '이것은 탭3 모달입니다.'];
-    final inputButtonTexts = ['탭1입력', '탭2입력', '탭3입력'];
+    final inputButtonTexts = [
+      tabCompleted[0] ? '탭1완료' : '탭1입력',
+      tabCompleted[1] ? '탭2완료' : '탭2입력',
+      tabCompleted[2] ? '탭3완료' : '탭3입력',
+    ];
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -65,7 +86,10 @@ class _CustomModalState extends State<CustomModal> {
               const SizedBox(width: 12),
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () => _openProfileInputPage(_selectedTab),
+                  onPressed:
+                      tabCompleted[_selectedTab]
+                          ? () => _handleCompleteButton(_selectedTab)
+                          : () => _openProfileInputPage(_selectedTab),
                   child: Text(inputButtonTexts[_selectedTab]),
                 ),
               ),

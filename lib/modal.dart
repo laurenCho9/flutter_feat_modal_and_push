@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile_input.dart';
 
 class CustomModal extends StatefulWidget {
   const CustomModal({super.key});
@@ -9,6 +10,12 @@ class CustomModal extends StatefulWidget {
 
 class _CustomModalState extends State<CustomModal> {
   int _selectedTab = 0;
+
+  void _openProfileInputPage(int tabIndex) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => ProfileInputPage(initialTab: tabIndex)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +65,7 @@ class _CustomModalState extends State<CustomModal> {
               const SizedBox(width: 12),
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => _openProfileInputPage(_selectedTab),
                   child: Text(inputButtonTexts[_selectedTab]),
                 ),
               ),

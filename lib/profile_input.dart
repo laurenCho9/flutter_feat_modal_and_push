@@ -11,13 +11,13 @@ class ProfileInputPage extends StatefulWidget {
 class _ProfileInputPageState extends State<ProfileInputPage> {
   late int _selectedTab;
 
-  final List<String> tabTitles = ['탭1', '탭2', '탭3'];
+  final List<String> tabTitles = ['프로필', '육각형', '탈모MBTI'];
   final List<String> tabDescriptions = [
-    '탭1에 대한 설명입니다.',
-    '탭2에 대한 설명입니다.',
-    '탭3에 대한 설명입니다.',
+    '프로필에 대한 설명입니다.',
+    '육각형에 대한 설명입니다.',
+    '탈모MBTI에 대한 설명입니다.',
   ];
-  final List<String> saveButtonTexts = ['탭1저장하기', '탭2저장하기', '탭3저장하기'];
+  final List<String> saveButtonTexts = ['프로필저장하기', '육각형저장하기', '탈모MBTI저장하기'];
 
   @override
   void initState() {

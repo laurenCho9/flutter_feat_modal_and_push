@@ -36,12 +36,13 @@ class _CustomModalState extends State<CustomModal> {
 
   @override
   Widget build(BuildContext context) {
-    final tabTexts = ['이것은 탭1 모달입니다.', '이것은 탭2 모달입니다.', '이것은 탭3 모달입니다.'];
+    final tabTexts = ['이것은 프로필 모달입니다.', '이것은 육각형 모달입니다.', '이것은 탈모MBTI 모달입니다.'];
     final inputButtonTexts = [
-      tabCompleted[0] ? '탭1완료' : '탭1입력',
-      tabCompleted[1] ? '탭2완료' : '탭2입력',
-      tabCompleted[2] ? '탭3완료' : '탭3입력',
+      tabCompleted[0] ? '프로필완료' : '프로필입력',
+      tabCompleted[1] ? '육각형완료' : '육각형입력',
+      tabCompleted[2] ? '탈모MBTI완료' : '탈모MBTI입력',
     ];
+    final tabButtonNames = ['프로필', '육각형', '탈모MBTI'];
     Color? getButtonBgColor(int idx) {
       if (tabCompleted[idx]) {
         return const Color(0xFF333333);
@@ -82,7 +83,7 @@ class _CustomModalState extends State<CustomModal> {
                       _selectedTab = i;
                     });
                   },
-                  child: Text('탭${i + 1}'),
+                  child: Text(tabButtonNames[i]),
                 ),
               ),
             ),
